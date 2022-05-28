@@ -8,6 +8,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -31,12 +32,17 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="data/Slivnicagpxtracks_1.js"></script>
-        <script src="data/Slivnicagpxwaypoints_2.js"></script>
+        <script src="data/Povezavakolesarskihpoti_2.js"></script>
+        <script src="data/StartciljkolesarskepotiSlivnica_3.js"></script>
+        <script src="data/Kolesarska_pot_Rakov_Skocjangpxtracks_4.js"></script>
+        <script src="data/mkrkd2018izbranivnosi_twIFZV_5.js"></script>
+        <script src="data/StartciljkolesarskepotiRakovkocjan_6.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:10
-        }).fitBounds([[45.72976319262295,14.315097788934445],[45.81597869262293,14.482581997950799]]);
+        }).fitBounds([[45.690039108383964,14.282136057489343],[45.81936235838689,14.517007674297936]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -109,20 +115,20 @@
                 lineJoin: 'round',
                 weight: 3.0,
                 fillOpacity: 0,
-                interactive: false,
+                interactive: true,
             }
         }
         function style_Slivnicagpxtracks_1_1() {
             return {
                 pane: 'pane_Slivnicagpxtracks_1',
                 opacity: 1,
-                color: 'rgba(222,44,112,1.0)',
+                color: 'rgba(255,1,136,1.0)',
                 dashArray: '',
                 lineCap: 'round',
                 lineJoin: 'round',
                 weight: 2.0,
                 fillOpacity: 0,
-                interactive: false,
+                interactive: true,
             }
         }
         map.createPane('pane_Slivnicagpxtracks_1');
@@ -130,7 +136,7 @@
         map.getPane('pane_Slivnicagpxtracks_1').style['mix-blend-mode'] = 'normal';
         var layer_Slivnicagpxtracks_1 = new L.geoJson.multiStyle(json_Slivnicagpxtracks_1, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_Slivnicagpxtracks_1',
             layerName: 'layer_Slivnicagpxtracks_1',
             pane: 'pane_Slivnicagpxtracks_1',
@@ -139,20 +145,89 @@
         });
         bounds_group.addLayer(layer_Slivnicagpxtracks_1);
         map.addLayer(layer_Slivnicagpxtracks_1);
-        function pop_Slivnicagpxwaypoints_2(feature, layer) {
+        function pop_Povezavakolesarskihpoti_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ele'] !== null ? autolinker.link(feature.properties['ele'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
                     </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Povezavakolesarskihpoti_2_0() {
+            return {
+                pane: 'pane_Povezavakolesarskihpoti_2',
+                opacity: 1,
+                color: 'rgba(20,111,214,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Povezavakolesarskihpoti_2');
+        map.getPane('pane_Povezavakolesarskihpoti_2').style.zIndex = 402;
+        map.getPane('pane_Povezavakolesarskihpoti_2').style['mix-blend-mode'] = 'normal';
+        var layer_Povezavakolesarskihpoti_2 = new L.geoJson(json_Povezavakolesarskihpoti_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Povezavakolesarskihpoti_2',
+            layerName: 'layer_Povezavakolesarskihpoti_2',
+            pane: 'pane_Povezavakolesarskihpoti_2',
+            onEachFeature: pop_Povezavakolesarskihpoti_2,
+            style: style_Povezavakolesarskihpoti_2_0,
+        });
+        bounds_group.addLayer(layer_Povezavakolesarskihpoti_2);
+        map.addLayer(layer_Povezavakolesarskihpoti_2);
+        function pop_StartciljkolesarskepotiSlivnica_3(feature, layer) {
+            var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['time'] !== null ? autolinker.link(feature.properties['time'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['magvar'] !== null ? autolinker.link(feature.properties['magvar'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['geoidheight'] !== null ? autolinker.link(feature.properties['geoidheight'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_StartciljkolesarskepotiSlivnica_3_0() {
+            return {
+                pane: 'pane_StartciljkolesarskepotiSlivnica_3',
+                radius: 6.000000000000002,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,1,136,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_StartciljkolesarskepotiSlivnica_3');
+        map.getPane('pane_StartciljkolesarskepotiSlivnica_3').style.zIndex = 403;
+        map.getPane('pane_StartciljkolesarskepotiSlivnica_3').style['mix-blend-mode'] = 'normal';
+        var layer_StartciljkolesarskepotiSlivnica_3 = new L.geoJson(json_StartciljkolesarskepotiSlivnica_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_StartciljkolesarskepotiSlivnica_3',
+            layerName: 'layer_StartciljkolesarskepotiSlivnica_3',
+            pane: 'pane_StartciljkolesarskepotiSlivnica_3',
+            onEachFeature: pop_StartciljkolesarskepotiSlivnica_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_StartciljkolesarskepotiSlivnica_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_StartciljkolesarskepotiSlivnica_3);
+        map.addLayer(layer_StartciljkolesarskepotiSlivnica_3);
+        function pop_Kolesarska_pot_Rakov_Skocjangpxtracks_4(feature, layer) {
+            var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -184,75 +259,227 @@
                         <td colspan="2">' + (feature.properties['link2_type'] !== null ? autolinker.link(feature.properties['link2_type'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['sym'] !== null ? autolinker.link(feature.properties['sym'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['number'] !== null ? autolinker.link(feature.properties['number'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fix'] !== null ? autolinker.link(feature.properties['fix'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['sat'] !== null ? autolinker.link(feature.properties['sat'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['hdop'] !== null ? autolinker.link(feature.properties['hdop'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['vdop'] !== null ? autolinker.link(feature.properties['vdop'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['pdop'] !== null ? autolinker.link(feature.properties['pdop'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ageofdgpsdata'] !== null ? autolinker.link(feature.properties['ageofdgpsdata'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['dgpsid'] !== null ? autolinker.link(feature.properties['dgpsid'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Slivnicagpxwaypoints_2_0() {
+        function style_Kolesarska_pot_Rakov_Skocjangpxtracks_4_0() {
             return {
-                pane: 'pane_Slivnicagpxwaypoints_2',
-                radius: 4.799999999999997,
+                pane: 'pane_Kolesarska_pot_Rakov_Skocjangpxtracks_4',
                 opacity: 1,
-                color: 'rgba(61,128,53,1.0)',
+                color: 'rgba(227,11,247,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Kolesarska_pot_Rakov_Skocjangpxtracks_4');
+        map.getPane('pane_Kolesarska_pot_Rakov_Skocjangpxtracks_4').style.zIndex = 404;
+        map.getPane('pane_Kolesarska_pot_Rakov_Skocjangpxtracks_4').style['mix-blend-mode'] = 'normal';
+        var layer_Kolesarska_pot_Rakov_Skocjangpxtracks_4 = new L.geoJson(json_Kolesarska_pot_Rakov_Skocjangpxtracks_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Kolesarska_pot_Rakov_Skocjangpxtracks_4',
+            layerName: 'layer_Kolesarska_pot_Rakov_Skocjangpxtracks_4',
+            pane: 'pane_Kolesarska_pot_Rakov_Skocjangpxtracks_4',
+            onEachFeature: pop_Kolesarska_pot_Rakov_Skocjangpxtracks_4,
+            style: style_Kolesarska_pot_Rakov_Skocjangpxtracks_4_0,
+        });
+        bounds_group.addLayer(layer_Kolesarska_pot_Rakov_Skocjangpxtracks_4);
+        map.addLayer(layer_Kolesarska_pot_Rakov_Skocjangpxtracks_4);
+        function pop_mkrkd2018izbranivnosi_twIFZV_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ESD'] !== null ? autolinker.link(feature.properties['ESD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Ime'] !== null ? autolinker.link(feature.properties['Ime'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Sinonimi'] !== null ? autolinker.link(feature.properties['Sinonimi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Zvrst'] !== null ? autolinker.link(feature.properties['Zvrst'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Tip'] !== null ? autolinker.link(feature.properties['Tip'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Gesla'] !== null ? autolinker.link(feature.properties['Gesla'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Opis'] !== null ? autolinker.link(feature.properties['Opis'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Datacija'] !== null ? autolinker.link(feature.properties['Datacija'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Avtorji'] !== null ? autolinker.link(feature.properties['Avtorji'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LokacijaOp'] !== null ? autolinker.link(feature.properties['LokacijaOp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Podrocja'] !== null ? autolinker.link(feature.properties['Podrocja'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Zavod'] !== null ? autolinker.link(feature.properties['Zavod'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Varstvo'] !== null ? autolinker.link(feature.properties['Varstvo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Obcina'] !== null ? autolinker.link(feature.properties['Obcina'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_mkrkd2018izbranivnosi_twIFZV_5_0(feature) {
+            switch(String(feature.properties['Zvrst'])) {
+                case 'arheološka najdišča':
+                    return {
+                pane: 'pane_mkrkd2018izbranivnosi_twIFZV_5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 2.0,
+                weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(38,213,67,1.0)',
-                interactive: false,
+                fillColor: 'rgba(248,248,19,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'stavbe':
+                    return {
+                pane: 'pane_mkrkd2018izbranivnosi_twIFZV_5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(24,218,248,1.0)',
+                interactive: true,
+            }
+                    break;
             }
         }
-        map.createPane('pane_Slivnicagpxwaypoints_2');
-        map.getPane('pane_Slivnicagpxwaypoints_2').style.zIndex = 402;
-        map.getPane('pane_Slivnicagpxwaypoints_2').style['mix-blend-mode'] = 'normal';
-        var layer_Slivnicagpxwaypoints_2 = new L.geoJson(json_Slivnicagpxwaypoints_2, {
+        map.createPane('pane_mkrkd2018izbranivnosi_twIFZV_5');
+        map.getPane('pane_mkrkd2018izbranivnosi_twIFZV_5').style.zIndex = 405;
+        map.getPane('pane_mkrkd2018izbranivnosi_twIFZV_5').style['mix-blend-mode'] = 'normal';
+        var layer_mkrkd2018izbranivnosi_twIFZV_5 = new L.geoJson(json_mkrkd2018izbranivnosi_twIFZV_5, {
             attribution: '',
-            interactive: false,
-            dataVar: 'json_Slivnicagpxwaypoints_2',
-            layerName: 'layer_Slivnicagpxwaypoints_2',
-            pane: 'pane_Slivnicagpxwaypoints_2',
-            onEachFeature: pop_Slivnicagpxwaypoints_2,
+            interactive: true,
+            dataVar: 'json_mkrkd2018izbranivnosi_twIFZV_5',
+            layerName: 'layer_mkrkd2018izbranivnosi_twIFZV_5',
+            pane: 'pane_mkrkd2018izbranivnosi_twIFZV_5',
+            onEachFeature: pop_mkrkd2018izbranivnosi_twIFZV_5,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Slivnicagpxwaypoints_2_0(feature));
+                return L.circleMarker(latlng, style_mkrkd2018izbranivnosi_twIFZV_5_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Slivnicagpxwaypoints_2);
-        map.addLayer(layer_Slivnicagpxwaypoints_2);
+        bounds_group.addLayer(layer_mkrkd2018izbranivnosi_twIFZV_5);
+        map.addLayer(layer_mkrkd2018izbranivnosi_twIFZV_5);
+        function pop_StartciljkolesarskepotiRakovkocjan_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_StartciljkolesarskepotiRakovkocjan_6_0() {
+            return {
+                pane: 'pane_StartciljkolesarskepotiRakovkocjan_6',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,11,247,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_StartciljkolesarskepotiRakovkocjan_6');
+        map.getPane('pane_StartciljkolesarskepotiRakovkocjan_6').style.zIndex = 406;
+        map.getPane('pane_StartciljkolesarskepotiRakovkocjan_6').style['mix-blend-mode'] = 'normal';
+        var layer_StartciljkolesarskepotiRakovkocjan_6 = new L.geoJson(json_StartciljkolesarskepotiRakovkocjan_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_StartciljkolesarskepotiRakovkocjan_6',
+            layerName: 'layer_StartciljkolesarskepotiRakovkocjan_6',
+            pane: 'pane_StartciljkolesarskepotiRakovkocjan_6',
+            onEachFeature: pop_StartciljkolesarskepotiRakovkocjan_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_StartciljkolesarskepotiRakovkocjan_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_StartciljkolesarskepotiRakovkocjan_6);
+        map.addLayer(layer_StartciljkolesarskepotiRakovkocjan_6);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Slivnicagpxwaypoints_2.png" /> Slivnica.gpx — waypoints': layer_Slivnicagpxwaypoints_2,'<img src="legend/Slivnicagpxtracks_1.png" /> Slivnica.gpx — tracks': layer_Slivnicagpxtracks_1,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/StartciljkolesarskepotiRakovkocjan_6.png" /> Start/cilj kolesarske poti Rakov Škocjan ': layer_StartciljkolesarskepotiRakovkocjan_6,'mkrkd2018izbranivnosi_twIFZV<br /><table><tr><td style="text-align: center;"><img src="legend/mkrkd2018izbranivnosi_twIFZV_5_arheološkanajdišča0.png" /></td><td>arheološka najdišča</td></tr><tr><td style="text-align: center;"><img src="legend/mkrkd2018izbranivnosi_twIFZV_5_stavbe1.png" /></td><td>stavbe</td></tr></table>': layer_mkrkd2018izbranivnosi_twIFZV_5,'<img src="legend/Kolesarska_pot_Rakov_Skocjangpxtracks_4.png" /> Kolesarska_pot_Rakov_Skocjan.gpx — tracks': layer_Kolesarska_pot_Rakov_Skocjangpxtracks_4,'<img src="legend/StartciljkolesarskepotiSlivnica_3.png" /> Start/cilj kolesarske poti Slivnica ': layer_StartciljkolesarskepotiSlivnica_3,'<img src="legend/Povezavakolesarskihpoti_2.png" /> Povezava kolesarskih poti ': layer_Povezavakolesarskihpoti_2,'<img src="legend/Slivnicagpxtracks_1.png" /> Slivnica.gpx — tracks': layer_Slivnicagpxtracks_1,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
         setBounds();
+        var i = 0;
+        layer_mkrkd2018izbranivnosi_twIFZV_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Ime'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['Ime']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_mkrkd2018izbranivnosi_twIFZV_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_mkrkd2018izbranivnosi_twIFZV_5]);
+        map.on("zoomend", function(){
+            resetLabels([layer_mkrkd2018izbranivnosi_twIFZV_5]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_mkrkd2018izbranivnosi_twIFZV_5]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_mkrkd2018izbranivnosi_twIFZV_5]);
+        });
         </script>
     </body>
 </html>

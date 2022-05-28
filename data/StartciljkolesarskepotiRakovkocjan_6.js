@@ -1,0 +1,1 @@
+var json_StartciljkolesarskepotiRakovkocjan_6 = {"type":"FeatureCollection","name":"StartciljkolesarskepotiRakovkocjan_6","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"fid":"Autogenerate"},"geometry":{"type":"Point","coordinates":[14.304494231105862,45.791074590926129]}}]}
